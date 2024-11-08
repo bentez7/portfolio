@@ -98,3 +98,25 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
+/* Optional styling for Font Awesome icons */
+.fa-linkedin-in, .fa-github {
+    font-size: 20px;
+    color: #fff;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
