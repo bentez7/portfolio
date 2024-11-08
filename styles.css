@@ -1,15 +1,21 @@
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Reset and Global Styles */
+* {
     margin: 0;
     padding: 0;
-    color: #333;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header and Navigation */
 header {
-    background: #333; /* Dark background for the header */
+    background: #333;
     color: white;
     padding: 20px 0;
-    position: relative;
     text-align: center;
 }
 
@@ -33,31 +39,55 @@ nav ul li a {
     font-weight: bold;
 }
 
-.hero {
-    background: url('your_background_image_url_here') no-repeat center center/cover; /* Full background image */
-    height: 80vh; /* Set the height of the hero section */
+.resume-button {
+    padding: 8px 12px;
+    background: #666;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.resume-button:hover {
+    background: #555;
+}
+
+/* Font Awesome Icons */
+.fa-linkedin-in, .fa-github {
+    font-size: 20px;
+    color: #fff;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Hero Section */
+.hero-section {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    height: 80vh;
+    padding: 0 20px;
 }
 
-.hero .profile-img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    border: 3px solid white;
-    margin-bottom: 20px;
+.hero-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
 }
 
-.hero h1 {
+.hero-content {
+    margin-left: 40px;
+    max-width: 600px;
+}
+
+.hero-content h1 {
     font-size: 2.5em;
-    margin: 0;
+    margin-bottom: 10px;
+    color: #fff;
 }
 
-.hero p {
+.hero-content p {
     font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #ddd;
 }
 
 .btn {
@@ -67,8 +97,14 @@ nav ul li a {
     border: none;
     border-radius: 5px;
     text-decoration: none;
+    font-weight: bold;
 }
 
+.btn:hover {
+    background: #388e3c;
+}
+
+/* Project Section */
 section {
     padding: 20px;
     max-width: 800px;
@@ -84,36 +120,36 @@ section {
 }
 
 .project img {
-    width: 100%; /* Responsive project images */
+    width: 100%;
     height: auto;
     border-radius: 5px;
 }
 
+/* Footer */
 footer {
     text-align: center;
     padding: 15px;
     background: #333;
     color: #fff;
     position: relative;
-    bottom: 0;
     width: 100%;
 }
 
-
-/* Optional styling for Font Awesome icons */
-.fa-linkedin-in, .fa-github {
-    font-size: 20px;
-    color: #fff;
-    margin-left: 10px;
-    vertical-align: middle;
+/* Media Section (Images and Videos) */
+.media {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
+.media img, .media video {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
 }
 
+/* Icon Styling */
 .icon {
     width: 20px;
     height: 20px;
