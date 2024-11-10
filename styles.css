@@ -149,9 +149,9 @@ footer {
     border-radius: 5px;
 }
 .media video {
-    width: 30%;
-    max-width: 300px; /* Set the max width for the video */
-    height: 200px; /* Keeps the aspect ratio intact */
+    width: 20%;
+    max-width: 200px; /* Set the max width for the video */
+    height: 100px; /* Keeps the aspect ratio intact */
     border-radius: 5px;
 }
 
