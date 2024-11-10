@@ -172,8 +172,10 @@ footer {
 
 .small-video {
     width: 100%;
-    max-width: 300px;
+    max-width: 420px;
     height: auto;
-    border-radius: 5px;
+    border-radius: 5px
+    display: block;
+    margin: 0 auto; /* Center the video */
 }
 
