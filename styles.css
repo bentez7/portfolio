@@ -125,6 +125,13 @@ section {
     border-radius: 5px;
 }
 
+.project video {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px;
+}
+
 /* Footer */
 footer {
     text-align: center;
@@ -149,9 +156,9 @@ footer {
     border-radius: 5px;
 }
 .media video {
-    width: 10%;
-    max-width: 100px; /* Set the max width for the video */
-    height: 50px; /* Keeps the aspect ratio intact */
+    width: 100%;
+    max-width: 300px; /* Set max width */
+    height: auto; /* Maintain aspect ratio */
     border-radius: 5px;
 }
 
