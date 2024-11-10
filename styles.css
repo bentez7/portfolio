@@ -169,3 +169,11 @@ footer {
     vertical-align: middle;
     margin-left: 5px;
 }
+
+.small-video {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px;
+}
+
