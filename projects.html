@@ -6,6 +6,73 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <title>Projects - Benjamin Tan En Zhe</title>
+    <style>
+     
+        /* Project Container */
+        #projects {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Each Project Card */
+        .project {
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project h3 {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            font-size: 1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .project a {
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .project a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            #projects {
+                grid-template-columns: repeat(2, 1fr); /* Two projects per row on medium-sized screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            #projects {
+                grid-template-columns: 1fr; /* One project per row on smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -23,48 +90,56 @@
     </header>
 
     <section id="projects">
-        <h2>Projects</h2>
+       
 
+        <!-- Project 1 -->
         <div class="project">
+            <img src="images/ecostyle.png" alt="E-commerce Apparel Website">
+            <h3>E-commerce Apparel Website</h3>
+            <p>This is a fully functional e-commerce apparel website developed with a user-friendly interface.</p>
+            <a href="http://localhost:3000/" target="_blank">View Project</a>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project">
+            <img src="images/ecoshop.png" alt="Stock Level Adjustment for Ecoshop">
+            <h3>Stock Level Adjustment for Ecoshop</h3>
+            <p>A system designed for Ecoshop that allows stock level adjustments, helping track inventory more efficiently.</p>
+            <a href="https://bentez7.github.io/adjustmentloa/Adjustment-LOA/MainPage.html" target="_blank">View Project</a>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project">
+            <img src="images/aglie tool.png" alt="Agile Management Tool">
             <h3>Agile Management Tool</h3>
-            <p>This project was designed to streamline team collaboration in agile development environments. Built with the Flask framework, the application features a front-end using HTML and CSS for clean, intuitive navigation and UI. The main backend logic is implemented in Python, with some JavaScript for dynamic elements and user interactions. Data is stored in an SQLite3 database to manage team progress, task assignments, and project status updates. Integrated with Jira, the tool enhances workflow transparency and productivity by allowing real-time tracking of team members and task stages.</p>
+            <p>This project was designed to streamline team collaboration in agile development environments...</p>
             <a href="http://127.0.0.1:5000" target="_blank">View Project</a>
         </div>
 
+        <!-- Project 4 -->
         <div class="project">
+            <img src="images/stable.png" alt="E-commerce Site">
             <h3>E-commerce Site</h3>
-            <p>For this project, I created an accessible and user-friendly e-commerce site using WordPress, complemented by WooCommerce for seamless online sales management. The platform is tailored for clients needing an easy-to-manage store with simplified product listing, secure payment processing, and order tracking. By leveraging WordPress and WooCommerce, I provided a robust solution that empowers clients to take full control of their online business with minimal technical know-how.</p>
+            <p>For this project, I created an accessible and user-friendly e-commerce site using WordPress...</p>
             <a href="http://www.stable.com.my" target="_blank">View Project</a>
         </div>
 
+        <!-- Project 5 -->
         <div class="project">
+            <img src="images/james_dyson_1.jpg" alt="James Dyson Competition">
             <h3>James Dyson Competition</h3>
-            <p>For the James Dyson Competition, our team focused on disaster response by developing a drone prototype designed for immediate post-disaster rescue. Using SolidWorks, we engineered a durable and versatile design that could assist in search and rescue operations. The 3D printing process enabled rapid prototyping, allowing us to test and refine the drone to perform effectively in emergency situations. This project was a blend of engineering and innovation, aiming to save lives and aid rescue efforts in challenging environments.</p>
-            <div class="media">
-                <img src="images/james_dyson_1.jpg" alt="James Dyson Competition Image 1">
-                <img src="images/james_dyson_2.jpg" alt="James Dyson Competition Image 2">
-                <img src="images/james_dyson_3.jpg" alt="James Dyson Competition Image 3">
-                <img src="images/james_dyson_4.jpg" alt="James Dyson Competition Image 4">
-            </div>
+            <p>For the James Dyson Competition, our team focused on disaster response by developing a drone prototype...</p>
+            <a href="http://example.com" target="_blank">View Project</a>
         </div>
 
+        <!-- Project 6 -->
         <div class="project">
-            <h3>HVAC System (Electrical Engineering Project)</h3>
-            <p>This HVAC project combined hardware and software engineering, using Arduino to control the system and Pymata4 to convert the code from C++ to Python, making it compatible with other platforms. This project not only enhanced my skills in cross-language compatibility but also emphasized practical applications in electrical engineering. The end result was an efficient HVAC system with improved automation and user control, showcasing how software can drive hardware innovation in engineering solutions.</p>
-            <div class="media">
-                <img src="images/hvac_1.jpg" alt="HVAC System Image 1">
-                <img src="images/hvac_2.jpg" alt="HVAC System Image 2">
-            </div>
+            <img src="images/hvac_1.jpg" alt="HVAC System">
+            <h3>HVAC System</h3>
+            <p>HVAC project combined hardware and software engineering, using Arduino to control the system...</p>
+            <a href="http://example.com" target="_blank">View Project</a>
         </div>
 
-        <div class="project">
-            <h3>AI-Driven Pac-Man Game</h3>
-            <p>In this project, I developed an AI-driven Pac-Man game utilizing object-oriented programming (OOP) principles in Python and integrated machine learning algorithms to adapt to player strategies. The AI analyzes player moves in real-time, adjusting the ghost behaviors and adding complexity to the gameplay. This project not only expanded my knowledge of machine learning but also demonstrated my ability to apply AI in creating interactive, intelligent gameplay experiences.</p>
-            <video controls class="small-video" style="max-width: 400px; height: auto; margin: 0 auto;">
-            <source src="videos/pacman_demo.mov" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        </div>
     </section>
 
     <footer>
