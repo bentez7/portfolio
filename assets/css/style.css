@@ -312,7 +312,7 @@ img {
 }
 
 .home__blob-img {
-  width: 170px;
+  width: 200px;
 }
 
 .home__data {
@@ -1094,7 +1094,6 @@ footer .footer__social a:hover {
   }
 
   .change-theme {
-    margin: 0;
   }
 
   .home__container {
