@@ -1878,3 +1878,39 @@ button.testimonial__link {
     display: none !important;
   }
 }
+
+/*==================== LIVE PROJECT BADGE ====================*/
+.portfolio__live {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .3rem;
+  margin-left: .5rem;
+  padding: .15rem .5rem;
+  border-radius: 2rem;
+  background-color: hsl(145, 63%, 94%);
+  color: hsl(145, 63%, 30%);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-medium);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.portfolio__live .uil-circle {
+  font-size: .45rem;
+  animation: pulse-dot 2s infinite;
+}
+
+body.dark-theme .portfolio__live {
+  background-color: hsl(145, 30%, 20%);
+  color: hsl(145, 63%, 72%);
+}
+
+.about__link {
+  color: var(--first-color);
+  font-weight: var(--font-medium);
+}
+
+.about__link:hover {
+  color: var(--first-color-alt);
+  text-decoration: underline;
+}
