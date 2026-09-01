@@ -186,7 +186,7 @@
             <span class="section__subtitle">My introduction</span>
 
             <div data-aos="fade-left" class="about__container container grid">
-                <img src="assets/img/about.jpg" alt="Benjamin Tan" class="about__img" />
+                <img src="assets/img/benjamin-wd.jpg" alt="Benjamin Tan at Western Digital" class="about__img" />
 
                 <div class="about__data">
                     <p class="about__description">
@@ -708,7 +708,7 @@
                 <div class="swiper-wrapper">
                     <!--==================== PORTFOLIO 1 ====================-->
                     <div class="portfolio__content grid swiper-slide">
-                        <img src="assets/img/ecostyle.png" alt="EcoStyle e-commerce platform" class="portfolio__img">
+                        <img src="assets/img/projects/eco-home.jpg" alt="EcoStyle storefront homepage" class="portfolio__img">
 
                         <div class="portfolio__data">
                             <h3 class="portfolio__title">EcoStyle — Sustainable Fashion E-Commerce</h3>
@@ -721,17 +721,17 @@
                             <div class="portfolio__tags">
                                 <span>React</span><span>Node.js</span><span>Express</span><span>Firebase</span><span>Stripe</span>
                             </div>
-                            <a href="https://github.com/bentez7" target="_blank" rel="noopener noreferrer"
-                                class="button button--flex button--small portfolio__button">
-                                View Project
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
+                            <button type="button" class="button button--flex button--small portfolio__button"
+                                data-gallery="ecostyle" data-gallery-title="EcoStyle — Sustainable Fashion E-Commerce">
+                                View 7 screenshots
+                                <i class="uil uil-images button__icon"></i>
+                            </button>
                         </div>
                     </div>
 
                     <!--==================== PORTFOLIO 2 ====================-->
                     <div class="portfolio__content grid swiper-slide">
-                        <img src="assets/img/project.png" alt="ERS Helpdesk Ticketing System" class="portfolio__img">
+                        <img src="assets/img/projects/ers-ticket.jpg" alt="ERS helpdesk ticket in Odoo" class="portfolio__img">
 
                         <div class="portfolio__data">
                             <h3 class="portfolio__title">ERS — Odoo Helpdesk Ticketing System</h3>
@@ -746,18 +746,17 @@
                                 <span>Odoo</span><span>Python</span><span>XML</span><span>PostgreSQL</span><span>Record
                                     Rules</span>
                             </div>
-                            <a href="https://github.com/bentez7" target="_blank" rel="noopener noreferrer"
-                                class="button button--flex button--small portfolio__button">
-                                View Project
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
+                            <button type="button" class="button button--flex button--small portfolio__button"
+                                data-gallery="ers" data-gallery-title="ERS — Odoo Helpdesk Ticketing System">
+                                View 4 screenshots
+                                <i class="uil uil-images button__icon"></i>
+                            </button>
                         </div>
                     </div>
 
                     <!--==================== PORTFOLIO 3 ====================-->
                     <div class="portfolio__content grid swiper-slide">
-                        <img src="assets/img/portfolio1.jpg" alt="Santorini digital board game"
-                            class="portfolio__img">
+                        <img src="assets/img/projects/santorini-home.jpg" alt="Santorini title screen" class="portfolio__img">
 
                         <div class="portfolio__data">
                             <h3 class="portfolio__title">Santorini — Digital Board Game</h3>
@@ -770,11 +769,11 @@
                             <div class="portfolio__tags">
                                 <span>Java</span><span>Java Swing</span><span>OOP</span><span>Figma</span><span>Agile</span>
                             </div>
-                            <a href="https://github.com/bentez7" target="_blank" rel="noopener noreferrer"
-                                class="button button--flex button--small portfolio__button">
-                                View Project
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
+                            <button type="button" class="button button--flex button--small portfolio__button"
+                                data-gallery="santorini" data-gallery-title="Santorini — Digital Board Game">
+                                View 6 screenshots
+                                <i class="uil uil-images button__icon"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -1291,24 +1290,39 @@
     </footer>
 
 
-    <!--==================== DOCUMENT VIEWER ====================-->
+    <!--==================== DOCUMENT / GALLERY VIEWER ====================-->
     <div class="viewer" id="doc-viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden>
         <div class="viewer__backdrop" data-viewer-close></div>
 
         <div class="viewer__panel">
             <div class="viewer__bar">
-                <h3 class="viewer__title" id="viewer-title"></h3>
+                <div>
+                    <h3 class="viewer__title" id="viewer-title"></h3>
+                    <span class="viewer__counter" id="viewer-counter"></span>
+                </div>
                 <button type="button" class="viewer__close" data-viewer-close aria-label="Close viewer">
                     <i class="uil uil-times"></i>
                 </button>
             </div>
 
-            <div class="viewer__stage protected" id="viewer-stage">
-                <span class="protected__watermark" aria-hidden="true"></span>
-                <span class="protected__shield" aria-hidden="true"></span>
+            <div class="viewer__frame">
+                <div class="viewer__stage" id="viewer-stage">
+                    <span class="protected__watermark" aria-hidden="true"></span>
+                    <span class="protected__shield" aria-hidden="true"></span>
+                </div>
+
+                <button type="button" class="viewer__nav viewer__nav--prev" id="viewer-prev"
+                    aria-label="Previous image">
+                    <i class="uil uil-angle-left-b"></i>
+                </button>
+                <button type="button" class="viewer__nav viewer__nav--next" id="viewer-next" aria-label="Next image">
+                    <i class="uil uil-angle-right-b"></i>
+                </button>
             </div>
 
-            <p class="viewer__note">
+            <p class="viewer__caption" id="viewer-caption"></p>
+
+            <p class="viewer__note" id="viewer-note">
                 <i class="uil uil-lock-alt"></i>
                 View only. Need a verified original? <a href="#contact" data-viewer-close>Ask me directly</a>.
             </p>
