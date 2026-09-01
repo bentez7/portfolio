@@ -46,44 +46,57 @@ skillsHeader.forEach((el) => {
     el.addEventListener('click', toggleSkills)
 })
 
-/*==================== QUALIFICATION TABS ====================*/
+/*==================== EXPERIENCE TABS ====================*/
+const expTabs = document.querySelectorAll('[data-target]'),
+    expContents = document.querySelectorAll('[data-content]')
 
+expTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = document.querySelector(tab.dataset.target)
 
-/*==================== SERVICES MODAL ====================*/
-const modalViews = document.querySelectorAll('.services__modal'),
-    modalBtns = document.querySelectorAll('.services__button'),
-    modalCloses = document.querySelectorAll('.services__modal-close')
-
-let modal = function (modalClick) {
-    modalViews[modalClick].classList.add('active-modal')
-}
-
-modalBtns.forEach((modalBtn, i) => {
-    modalBtn.addEventListener('click', () => {
-        modal(i)
-    })
-})
-
-modalCloses.forEach((modalClose) => {
-    modalClose.addEventListener('click', () => {
-        modalViews.forEach((modalView) => {
-            modalView.classList.remove('active-modal')
+        expContents.forEach(content => {
+            content.classList.remove('experience__content-active')
         })
+        if (target) target.classList.add('experience__content-active')
+
+        expTabs.forEach(t => {
+            t.classList.remove('experience__active')
+        })
+        tab.classList.add('experience__active')
     })
 })
+
 /*==================== PORTFOLIO SWIPER  ====================*/
 let swiperPortfolio = new Swiper('.portfolio__container', {
     cssMode: true,
     loop: true,
 
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.portfolio__container .swiper-button-next',
+        prevEl: '.portfolio__container .swiper-button-prev',
     },
     pagination: {
-        el: '.swiper-pagination',
+        el: '.portfolio__container .swiper-pagination',
         clickable: true,
     },
+});
+
+/*==================== CREDENTIALS SWIPER ====================*/
+let swiperCredentials = new Swiper('.credentials__container', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 32,
+    slidesPerView: 1,
+
+    pagination: {
+        el: '.swiper-pagination-credentials',
+        clickable: true,
+        dynamicBullets: true,
+    },
+    breakpoints: {
+        568: { slidesPerView: 2 },
+        768: { slidesPerView: 3 },
+    }
 });
 
 /*==================== TESTIMONIAL ====================*/
@@ -94,14 +107,12 @@ let swiperTestimonial = new Swiper('.testimonial__container', {
 
 
     pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-pagination-testimonial',
         clickable: true,
         dynamicBullets: true,
     },
-    breakpoints:{
-        568:{
-            slidesPerview: 2,
-        }
+    breakpoints: {
+        568: { slidesPerView: 2 },
     }
 });
 
@@ -114,12 +125,14 @@ function scrollActive(){
     sections.forEach(current =>{
         const sectionHeight = current.offsetHeight
         const sectionTop = current.offsetTop - 50;
-        sectionId = current.getAttribute('id')
+        const sectionId = current.getAttribute('id')
+        const navTarget = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+        if(!navTarget) return
 
         if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+            navTarget.classList.add('active-link')
         }else{
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+            navTarget.classList.remove('active-link')
         }
     })
 }
@@ -172,3 +185,62 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+/*==================== VIEW-ONLY DOCUMENT VIEWER ====================*/
+/* Certificates and reference letters are shown in a watermarked lightbox rather
+   than linked as files, so there is no download target and no direct URL in the
+   markup. Note this is a deterrent, not real protection: anything a browser can
+   display, a determined visitor can capture. The watermark is what actually
+   makes a captured copy hard to misuse. */
+const docViewer = document.getElementById('doc-viewer'),
+    docStage = document.getElementById('viewer-stage'),
+    docTitle = document.getElementById('viewer-title')
+
+let lastDocTrigger = null
+
+function openDoc(src, title, trigger) {
+    if (!docViewer) return
+    lastDocTrigger = trigger || null
+    docStage.style.backgroundImage = "url('" + src + "')"
+    docTitle.textContent = title || 'Document'
+    docViewer.hidden = false
+    document.body.style.overflow = 'hidden'
+    docViewer.querySelector('.viewer__close').focus()
+}
+
+function closeDoc() {
+    if (!docViewer || docViewer.hidden) return
+    docViewer.hidden = true
+    docStage.style.backgroundImage = ''
+    document.body.style.overflow = ''
+    if (lastDocTrigger) lastDocTrigger.focus()
+}
+
+/* Delegated, because Swiper rebuilds its looped slide clones on resize and any
+   listener bound straight to a clone would be thrown away with it. */
+document.addEventListener('click', e => {
+    const trigger = e.target.closest('[data-doc]')
+    if (trigger) {
+        openDoc(trigger.dataset.doc, trigger.dataset.docTitle, trigger)
+        return
+    }
+    if (e.target.closest('[data-viewer-close]')) closeDoc()
+})
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeDoc()
+})
+
+/* Keep focus inside the viewer while it is open. */
+document.addEventListener('focusin', e => {
+    if (docViewer && !docViewer.hidden && !docViewer.contains(e.target)) {
+        docViewer.querySelector('.viewer__close').focus()
+    }
+})
+
+/* Block the casual save routes on protected artwork: right-click menu,
+   drag-to-desktop, and text selection. */
+function guardProtected(e) {
+    if (e.target.closest && e.target.closest('.protected')) e.preventDefault()
+}
+document.addEventListener('contextmenu', guardProtected)
+document.addEventListener('dragstart', guardProtected)
