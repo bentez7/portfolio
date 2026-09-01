@@ -185,49 +185,126 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
-/*==================== VIEW-ONLY DOCUMENT VIEWER ====================*/
-/* Certificates and reference letters are shown in a watermarked lightbox rather
-   than linked as files, so there is no download target and no direct URL in the
-   markup. Note this is a deterrent, not real protection: anything a browser can
-   display, a determined visitor can capture. The watermark is what actually
-   makes a captured copy hard to misuse. */
+/*==================== DOCUMENT / GALLERY VIEWER ====================*/
+/* Two jobs, one modal:
+   - Documents (certificates, reference letters) open watermarked and view-only.
+     That is a deterrent, not real protection — anything a browser can display can
+     be captured. The watermark is what makes a captured copy hard to misuse.
+   - Project galleries are the opposite: they are Benjamin's own work and are meant
+     to be looked at, so they open clean, with prev/next navigation. */
+
+const PROJECT_GALLERIES = {
+    ecostyle: [
+        ['assets/img/projects/eco-home.jpg', 'Homepage — sustainability-led landing and featured collections'],
+        ['assets/img/projects/eco-catalogue.jpg', 'Catalogue — browsing with category, size and colour filters'],
+        ['assets/img/projects/eco-product.jpg', 'Product detail — colour and size variants with customer reviews'],
+        ['assets/img/projects/eco-cart.jpg', 'Cart — quantity adjustment and live order summary'],
+        ['assets/img/projects/eco-checkout.jpg', 'Checkout — shipping details and Stripe card payment'],
+        ['assets/img/projects/eco-wishlist.jpg', 'Wishlist — saved products for later'],
+        ['assets/img/projects/eco-admin.jpg', 'Admin — product and inventory management over Firestore']
+    ],
+    santorini: [
+        ['assets/img/projects/santorini-home.jpg', 'Title screen — new game and save-game loading'],
+        ['assets/img/projects/santorini-modes.jpg', 'Mode selection — Classic, Timer and the custom Wealth mode'],
+        ['assets/img/projects/santorini-gods.jpg', 'God card selection — each card alters the movement rules'],
+        ['assets/img/projects/santorini-board.jpg', 'Gameplay — legal moves highlighted from the rule engine'],
+        ['assets/img/projects/santorini-coin.jpg', 'Wealth mode — the original economy layer I designed'],
+        ['assets/img/projects/santorini-timer.jpg', 'Timer mode — per-player countdown with turn enforcement']
+    ],
+    ers: [
+        ['assets/img/projects/ers-ticket.jpg', 'Ticket detail — customer, team, priority and sales order links'],
+        ['assets/img/projects/ers-workflow.jpg', 'Lifecycle design — the pre/post-installation routing I modelled'],
+        ['assets/img/projects/ers-automation.jpg', 'Automation — stage-triggered actions chaining the workflow'],
+        ['assets/img/projects/ers-access.jpg', 'Access rights — per-model read/write rules by role']
+    ]
+}
+
 const docViewer = document.getElementById('doc-viewer'),
     docStage = document.getElementById('viewer-stage'),
-    docTitle = document.getElementById('viewer-title')
+    docTitle = document.getElementById('viewer-title'),
+    docCounter = document.getElementById('viewer-counter'),
+    docCaption = document.getElementById('viewer-caption'),
+    docNote = document.getElementById('viewer-note'),
+    docPrev = document.getElementById('viewer-prev'),
+    docNext = document.getElementById('viewer-next')
 
-let lastDocTrigger = null
+let viewerItems = [],
+    viewerIndex = 0,
+    viewerTrigger = null
 
-function openDoc(src, title, trigger) {
-    if (!docViewer) return
-    lastDocTrigger = trigger || null
-    docStage.style.backgroundImage = "url('" + src + "')"
-    docTitle.textContent = title || 'Document'
+function renderViewer() {
+    const item = viewerItems[viewerIndex]
+    if (!item) return
+
+    docStage.style.backgroundImage = "url('" + item[0] + "')"
+    docCaption.textContent = item[1] || ''
+    docCaption.hidden = !item[1]
+
+    const many = viewerItems.length > 1
+    docCounter.textContent = many ? (viewerIndex + 1) + ' / ' + viewerItems.length : ''
+    docPrev.hidden = !many
+    docNext.hidden = !many
+}
+
+function openViewer(items, title, opts) {
+    if (!docViewer || !items.length) return
+    opts = opts || {}
+
+    viewerItems = items
+    viewerIndex = opts.index || 0
+    viewerTrigger = opts.trigger || null
+
+    docTitle.textContent = title || 'Preview'
+    docStage.classList.toggle('protected', !!opts.protect)
+    docNote.hidden = !opts.protect
+
+    renderViewer()
     docViewer.hidden = false
     document.body.style.overflow = 'hidden'
     docViewer.querySelector('.viewer__close').focus()
 }
 
-function closeDoc() {
+function closeViewer() {
     if (!docViewer || docViewer.hidden) return
     docViewer.hidden = true
     docStage.style.backgroundImage = ''
+    viewerItems = []
     document.body.style.overflow = ''
-    if (lastDocTrigger) lastDocTrigger.focus()
+    if (viewerTrigger) viewerTrigger.focus()
+}
+
+function stepViewer(delta) {
+    if (viewerItems.length < 2) return
+    viewerIndex = (viewerIndex + delta + viewerItems.length) % viewerItems.length
+    renderViewer()
 }
 
 /* Delegated, because Swiper rebuilds its looped slide clones on resize and any
    listener bound straight to a clone would be thrown away with it. */
 document.addEventListener('click', e => {
-    const trigger = e.target.closest('[data-doc]')
-    if (trigger) {
-        openDoc(trigger.dataset.doc, trigger.dataset.docTitle, trigger)
+    const doc = e.target.closest('[data-doc]')
+    if (doc) {
+        openViewer([[doc.dataset.doc, '']], doc.dataset.docTitle, { protect: true, trigger: doc })
         return
     }
-    if (e.target.closest('[data-viewer-close]')) closeDoc()
+
+    const gallery = e.target.closest('[data-gallery]')
+    if (gallery) {
+        const items = PROJECT_GALLERIES[gallery.dataset.gallery]
+        if (items) openViewer(items, gallery.dataset.galleryTitle, { trigger: gallery })
+        return
+    }
+
+    if (e.target.closest('#viewer-prev')) return stepViewer(-1)
+    if (e.target.closest('#viewer-next')) return stepViewer(1)
+    if (e.target.closest('[data-viewer-close]')) closeViewer()
 })
 
 document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDoc()
+    if (docViewer.hidden) return
+    if (e.key === 'Escape') closeViewer()
+    if (e.key === 'ArrowLeft') stepViewer(-1)
+    if (e.key === 'ArrowRight') stepViewer(1)
 })
 
 /* Keep focus inside the viewer while it is open. */
@@ -238,7 +315,7 @@ document.addEventListener('focusin', e => {
 })
 
 /* Block the casual save routes on protected artwork: right-click menu,
-   drag-to-desktop, and text selection. */
+   drag-to-desktop, and text selection. Project galleries are deliberately exempt. */
 function guardProtected(e) {
     if (e.target.closest && e.target.closest('.protected')) e.preventDefault()
 }
