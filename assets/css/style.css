@@ -1996,3 +1996,46 @@ body.dark-theme .portfolio__live {
     right: .25rem;
   }
 }
+
+/*==================== CONTACT CALL TO ACTION ====================*/
+/* Replaces the old contact form. A static site can't process a form without a
+   third-party handler or PHP, and a plain mailto has no failure mode at all. */
+.contact__cta {
+  padding: 2rem 1.5rem;
+  border-radius: .75rem;
+  background-color: var(--container-color);
+  box-shadow: 0 4px 20px hsla(var(--hue-color), 64%, 15%, .1);
+}
+
+.contact__cta-title {
+  font-size: var(--h2-font-size);
+  font-weight: var(--font-semi-bold);
+  color: var(--title-color);
+  margin-bottom: var(--mb-0-75);
+}
+
+.contact__cta-text {
+  font-size: var(--small-font-size);
+  line-height: 1.6;
+  margin-bottom: var(--mb-1-5);
+}
+
+.contact__cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-bottom: var(--mb-1-5);
+}
+
+.contact__cta-alt {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .25rem;
+  font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
+  color: var(--first-color);
+}
+
+.contact__cta-alt:hover {
+  color: var(--first-color-alt);
+}
