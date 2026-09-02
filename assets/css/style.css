@@ -1997,38 +1997,12 @@ body.dark-theme .portfolio__live {
   }
 }
 
-/*==================== CONTACT CALL TO ACTION ====================*/
-/* Replaces the old contact form. A static site can't process a form without a
-   third-party handler or PHP, and a plain mailto has no failure mode at all. */
-.contact__cta {
-  padding: 2rem 1.5rem;
-  border-radius: .75rem;
-  background-color: var(--container-color);
-  box-shadow: 0 4px 20px hsla(var(--hue-color), 64%, 15%, .1);
-}
-
-.contact__cta-title {
-  font-size: var(--h2-font-size);
-  font-weight: var(--font-semi-bold);
-  color: var(--title-color);
-  margin-bottom: var(--mb-0-75);
-}
-
-.contact__cta-text {
-  font-size: var(--small-font-size);
-  line-height: 1.6;
-  margin-bottom: var(--mb-1-5);
-}
-
-.contact__cta-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .75rem;
-  margin-bottom: var(--mb-1-5);
-}
-
+/*==================== CONTACT FALLBACK LINK ====================*/
+/* Sits under the form: if FormSubmit is ever down or blocked, there is still a
+   direct route to the inbox. */
 .contact__cta-alt {
   display: inline-flex;
+  margin-top: var(--mb-1);
   align-items: center;
   column-gap: .25rem;
   font-size: var(--small-font-size);
