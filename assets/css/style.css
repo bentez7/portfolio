@@ -1321,6 +1321,7 @@ footer .footer__social a:hover {
 
 /*==================== NEW SKILL BARS ====================*/
 .skills__csharp     { width: 75%; }
+.skills__phpweb     { width: 80%; }
 .skills__c          { width: 65%; }
 .skills__git        { width: 85%; }
 .skills__firebase   { width: 80%; }
