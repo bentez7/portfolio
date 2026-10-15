@@ -742,7 +742,7 @@ img {
 
 .project__bg {
   background-color: var(--first-color-second);
-  padding-top: 3rem;
+  padding: 3rem 0;
 }
 
 .project__title {
@@ -1037,7 +1037,6 @@ footer .footer__social a:hover {
   .about__container,
   .skills__container,
   .portfolio__content,
-  .project__container,
   .contact__container,
   .footer__container {
     grid-template-columns: repeat(2, 1fr);
@@ -1177,9 +1176,8 @@ footer .footer__social a:hover {
   .project__container {
     background-color: var(--first-color-second);
     border-radius: 1rem;
-    padding: 3rem 2.5rem 0;
-    grid-template-columns: 1fr max-content;
-    column-gap: 3rem;
+    padding: 3rem 2.5rem;
+    grid-template-columns: 1fr;
   }
 
   .project__data {
