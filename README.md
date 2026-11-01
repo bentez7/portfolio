@@ -4,6 +4,8 @@ Personal portfolio site for **Benjamin Tan En Zhe**, Software Engineering (Honou
 
 **Live:** https://benjamin.stable.com.my
 
+![Portfolio home page](docs/screenshot.png)
+
 ## Sections
 
 - **Home** — availability badge, positioning statement, CV download
@@ -55,6 +57,11 @@ Deploys are just `git push` to `main`.
 
 > Asset paths are relative (`assets/...`), not root-absolute (`/assets/...`), so the site works
 > from the `/portfolio` sub-path on GitHub Pages. Keep it that way when adding files.
+
+## What I'd improve next
+
+- Compress the larger images, some of which are over 1 MB.
+- Add an automated link check so broken project links are caught before deploying.
 
 ---
 
