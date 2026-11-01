@@ -1,0 +1,8 @@
+.DS_Store
+
+# Personal documents and working files kept beside the site, never published
+/*.pdf
+/Western Digital*
+/ecoroute (1).png
+/modulah.png
+/ecoroute-*/
