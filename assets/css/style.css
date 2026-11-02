@@ -906,7 +906,7 @@ footer .footer__social a:hover {
   padding: 0 1rem;
   font-size: var(--smaller-font-size);
   text-align: center;
-  color: var(--text-color-light);
+  color: #fff;
 }
 
 .footer__title,
