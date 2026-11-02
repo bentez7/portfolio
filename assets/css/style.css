@@ -900,6 +900,15 @@ footer .footer__social a:hover {
   margin-top: var(--mb-3);
 }
 
+.footer__disclaimer {
+  max-width: 768px;
+  margin: var(--mb-1) auto 0;
+  padding: 0 1rem;
+  font-size: var(--smaller-font-size);
+  text-align: center;
+  color: var(--text-color-light);
+}
+
 .footer__title,
 .footer__subtitle,
 .footer__link,
